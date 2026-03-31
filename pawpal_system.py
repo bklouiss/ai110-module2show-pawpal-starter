@@ -185,8 +185,8 @@ class Scheduler:
         return result
 
     def add_task(self, task: Task) -> None:
-        """Add a task to the scheduler, raising ValueError on duplicates."""
-        if task in self._tasks:
+        """Add a task to the scheduler, raising ValueError if the exact same object is added twice."""
+        if any(t is task for t in self._tasks):
             raise ValueError(f"Task '{task.name}' has already been added")
         self._tasks.append(task)
 

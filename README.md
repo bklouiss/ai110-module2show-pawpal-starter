@@ -34,6 +34,39 @@ Phase 4 extended the core `Scheduler` class with four algorithmic improvements:
 
 **Conflict detection** — `detect_conflicts()` scans all incomplete tasks pairwise and returns a list of human-readable warning strings for any whose time windows overlap. Uses the standard interval overlap test (`a_start < b_end and b_start < a_end`). Never raises — warnings are returned, not thrown, so the UI can display them without crashing.
 
+## Testing PawPal+
+
+### Running the tests
+
+```bash
+python -m pytest
+```
+
+Or for verbose output showing each test name:
+
+```bash
+python -m pytest tests/ -v
+```
+
+### What the tests cover
+
+The test suite (`tests/test_pawpal.py`) contains **50 tests** across five areas:
+
+| Area | Tests | What is verified |
+|---|---|---|
+| `add_task` | 5 | Count increments, tasks with start_time/recurrence accepted, duplicate same-object rejected, same-name different-object allowed |
+| `complete_task` | 8 | Daily +1 day, weekly +7 days, one-off returns None, next occurrence auto-registered and starts incomplete, plan invalidated after completion, unregistered task raises |
+| `filter_tasks` | 8 | Filter by category, priority, and completed status individually and combined; no-match returns empty list without raising |
+| `sort_by_time` | 5 | Precise HH:MM chronological order, time_of_day label fallback, no-time-info sorts last, mixed precise+label, does not mutate internal task order |
+| `detect_conflicts` | 8 | Overlapping start_time windows flagged, same time_of_day label flagged, adjacent (touching) tasks not flagged, completed tasks excluded, multiple pairs each produce their own warning, no-time-info tasks silently skipped |
+| Scheduling & guards | 16 | Time budget respected, priority ordering, special-needs boost, empty plan without crash, all guard clauses (duplicate, wrong call order, zero/negative inputs) |
+
+### Confidence level
+
+**4 / 5 stars**
+
+The core scheduling logic, recurring task generation, sorting, filtering, and conflict detection are all well-covered with both happy-path and edge-case tests. One test (`test_add_task_same_name_different_object`) caught a real bug during development — the duplicate guard was comparing by value instead of identity, which would have silently blocked valid use cases. The main gap is integration-level testing between `pawpal_system.py` and `app.py` (the Streamlit UI layer is not tested), and there are no tests for concurrent or multi-pet scenarios.
+
 ## Getting started
 
 ### Setup
