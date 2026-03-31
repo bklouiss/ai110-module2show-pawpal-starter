@@ -39,12 +39,22 @@ This tradeoff is reasonable for a daily pet care planner because the number of t
 **a. How you used AI**
 
 - How did you use AI tools during this project (for example: design brainstorming, debugging, refactoring)?
+
+The main use of AI besides generating code, was mainly breaking the code to test edge cases and also having a partner to converse with to make sure I am not overthinking but also to test my ideas to see what I liked compared to what it proposed and refine the ideas throughout the process.
+
 - What kinds of prompts or questions were most helpful?
+
+My main prompt was analyze my request structured prompts or the goal is to break the code stype prompts to test edge cases and also think about my request before generating anything so I can atune the response it generates to fit what I actually want for it.
 
 **b. Judgment and verification**
 
 - Describe one moment where you did not accept an AI suggestion as-is.
+
+When I was prompting it for my UML the main point was verifying variables and relationships. I didn't like the automatically generated fields and verified what variables and methods needed to be private versus public.
+
 - How did you evaluate or verify what the AI suggested?
+
+I had it go back and analyze future relationships between how variables should interact and looked at it's suggestions and constaintly verified the class relationships/interactions and variable access.
 
 ---
 
@@ -53,12 +63,22 @@ This tradeoff is reasonable for a daily pet care planner because the number of t
 **a. What you tested**
 
 - What behaviors did you test?
+
+I wanted to test the behaviors of the Scheduler Class to make sure it properly handled the addition of tasks.
+
 - Why were these tests important?
+
+These tests were important to make sure that the scheduler functions as planned so that was extra tasks aren't added and tasks don't conflict with one another
 
 **b. Confidence**
 
 - How confident are you that your scheduler works correctly?
+
+I feel pretty confident in my edge cases with my scheduler working well
+
 - What edge cases would you test next if you had more time?
+
+If I had more time I would check to verify appointment interactions to make sure they don't conflict but also make sure real time updates work
 
 ---
 
@@ -68,10 +88,16 @@ This tradeoff is reasonable for a daily pet care planner because the number of t
 
 - What part of this project are you most satisfied with?
 
+I am happy with the edge cases functionality.
+
 **b. What you would improve**
 
 - If you had another iteration, what would you improve or redesign?
 
+I think I would redesign the UI. I understand the assignment uses streamlit for the UI functionality but I would reoganize it so that the schedule lived on a seperate page
+
 **c. Key takeaway**
 
 - What is one important thing you learned about designing systems or working with AI on this project?
+
+I learned that there is a need to constantly check and test for edge cases and especially with information sensitive projects, perform injections to see where there are security vulnerablilities to make sure important information is safe.
